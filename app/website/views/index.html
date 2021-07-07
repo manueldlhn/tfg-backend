@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Indice{% endblock %}
+
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+
+
+{% block content %}
+    <p>Hello World</p>
+    <br>
+    {% for d in data %}
+        <p>{{ d }}</p>
+    {% endfor %}
+{% endblock %}
