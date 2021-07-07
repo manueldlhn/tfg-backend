@@ -62,6 +62,7 @@ exports.findAllUsers = (req, res) => {
         res.status(500).send({
             message:
               err.message || "Ha habido un error al extraer los rutina."
+              
         });
     });
 };
