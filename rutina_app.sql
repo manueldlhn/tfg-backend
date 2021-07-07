@@ -153,13 +153,13 @@ CREATE TABLE IF NOT EXISTS `usuario_has_ejercicio` (
 -- Volcado de datos para la tabla `usuario_has_ejercicio`
 --
 
-INSERT INTO `usuario_has_ejercicio` (`usuario_email`, `ejercicio_id`) VALUES
-('paco@gmail.com', 11),
-('paco@gmail.com', 12),
-('paco@gmail.com', 13),
-('manuel@usuario.es', 11),
-('manuel@usuario.es', 12),
-('manuel@usuario.es', 14);
+INSERT INTO `usuario_has_ejercicio` (`usuario_email`, `ejercicio_id`, `Comentarios`) VALUES
+('paco@gmail.com', 11, 'Comentarios de prueba'),
+('paco@gmail.com', 12, 'Comentarios de prueba'),
+('paco@gmail.com', 13, 'Comentarios de prueba'),
+('manuel@usuario.es', 11, 'Comentarios de prueba'),
+('manuel@usuario.es', 12, 'Comentarios de prueba'),
+('manuel@usuario.es', 14, 'Comentarios de prueba');
 
 -- --------------------------------------------------------
 
@@ -177,12 +177,12 @@ CREATE TABLE IF NOT EXISTS `usuario_has_rutina` (
 -- Volcado de datos para la tabla `usuario_has_rutina`
 --
 
-INSERT INTO `usuario_has_rutina` (`usuario_email`, `rutina_id`) VALUES
-('paco@gmail.com', 15),
-('paco@gmail.com', 17),
-('paco@gmail.com', 18),
-('manuel@usuario.es', 15),
-('manuel@usuario.es', 17);
+INSERT INTO `usuario_has_rutina` (`usuario_email`, `rutina_id`, `Comentarios`) VALUES
+('paco@gmail.com', 15, 'Comentarios de prueba'),
+('paco@gmail.com', 17, 'Comentarios de prueba'),
+('paco@gmail.com', 18, 'Comentarios de prueba'),
+('manuel@usuario.es', 15, 'Comentarios de prueba'),
+('manuel@usuario.es', 17, 'Comentarios de prueba');
 
 -- --------------------------------------------------------
 

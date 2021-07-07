@@ -13,7 +13,8 @@ exports.create = (req, res) => {
 
     const user_routine = {
         usuario_email: req.body.usuario_email,
-        rutina_id: req.body.rutina_id        
+        rutina_id: req.body.rutina_id,
+        Comentarios: req.body.Comentarios,      
     }
 
     Usuario_has_Rutina.create(user_routine)
@@ -67,6 +68,34 @@ exports.findAllUsers = (req, res) => {
     });
 };
 
+
+exports.update = (req,res) => {
+    const usuario_email = req.params.usuario_email;
+    const rutina_id = req.params.rutina_id;
+
+    Usuario_has_Rutina.update(req.body, {
+        where: {
+            usuario_email: usuario_email,
+            rutina_id: rutina_id,
+        }
+    })
+    .then(num => {
+        if(num == 1){
+            res.send({
+                message: "Se ha actualizado correctamente el registro."
+            });
+        } else {
+            res.send({
+                message: "No se ha podido actualizar el registro.",
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error al actualizar el registro.", err
+        });
+    });
+}
 
 exports.delete = (req, res) => {
     const usuario_email = req.params.usuario_email;

@@ -7,6 +7,7 @@ module.exports = app => {
     router.post("/", authenticateToken(restricted=true), UserRoutine.create);
     router.get("/User/:usuario_email",UserRoutine.findAllRoutines);
     router.get("/Routine/:rutina_id", UserRoutine.findAllUsers);
+    router.put("/User-&-Routine/:usuario_email/:rutina_id", authenticateToken(restricted=true),UserRoutine.update)
     router.delete("/User-&-Routine/:usuario_email/:rutina_id", authenticateToken(restricted=true),UserRoutine.delete);
     router.delete("/User/:usuario_email", authenticateToken(restricted=true), UserRoutine.deleteAllRoutines);
     router.delete("/Routine/:rutina_id", authenticateToken(restricted=true), UserRoutine.deleteFromAllUsers);
