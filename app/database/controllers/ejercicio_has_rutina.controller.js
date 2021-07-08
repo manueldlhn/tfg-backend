@@ -15,6 +15,7 @@ exports.create = (req, res) => {
     const workout_routine = {
         EJERCICIO_ej_id: req.body.EJERCICIO_ej_id, 
         RUTINA_rut_id: req.body.RUTINA_rut_id,
+        Comentarios: req.body.Comentarios,
         USUARIOS_Email: req.body.USUARIOS_Email        
     }
 
@@ -29,6 +30,24 @@ exports.create = (req, res) => {
           });
     });
 };
+
+
+exports.findAll = (req,res) => {
+    const offset = req.query.offset;
+    Ejercicio_has_Rutina.findAll({
+        offset: parseInt(offset),
+        limit: 10,
+    })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+              err.message || "Ha habido un error al extraer las asociaciones."
+        });
+    });
+}
 
 
 exports.findAllRoutines = (req, res) => {
@@ -78,6 +97,8 @@ exports.findAllWorkouts = (req, res) => {
 exports.update = (req, res) => {
     const EJERCICIO_ej_id = req.params.EJERCICIO_ej_id;
     const RUTINA_rut_id = req.params.RUTINA_rut_id;
+
+    console.log("Petición lanzada");
 
     Ejercicio_has_Rutina.update(req.body,{
         where: { 

@@ -4,7 +4,8 @@ module.exports = app => {
     var router = require("express").Router();
 
     router.post("/", authenticateToken(restricted=true), WorkoutRoutine.create);
-    router.get("/Workout/:EJERCICIO_ej_id", WorkoutRoutine.findAllRoutines);
+    router.get("/All", authenticateToken(restricted=true), WorkoutRoutine.findAll);
+    router.get("/Workout/:EJERCICIO_ej_id", WorkoutRoutine.findAllRoutines); // De momento no se usa
     router.get("/Routine/:RUTINA_rut_id", authenticateToken(restricted=false), WorkoutRoutine.findAllWorkouts);
     router.put("/:EJERCICIO_ej_id/:RUTINA_rut_id",  WorkoutRoutine.update);
     router.delete("/Workout-&-Routine/:EJERCICIO_ej_id/:RUTINA_rut_id", WorkoutRoutine.delete);
