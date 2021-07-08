@@ -1,7 +1,8 @@
+const { Rol } = require("../../authentication/config/Rol");
 const {db} = require("../database");
 
 const Usuario_has_Ejercicio = db.usuario_has_ejercicio;
-
+const Ejercicio = db.ejercicio;
 
 exports.create = (req, res) => {
     if (!req.body.usuario_email || !req.body.ejercicio_id) {
@@ -31,14 +32,27 @@ exports.create = (req, res) => {
 
 
 exports.findAllWorkouts = (req, res) => {
-    
+    const user = req.user;
+
     Usuario_has_Ejercicio.findAll({
+        include: user.Rol == Rol.Usuario && {
+            model: Ejercicio,
+            as: 'ejercicio',
+        },
         where: {
             usuario_email: req.params.usuario_email
-        }
+        },
     })
     .then(data => {
-        res.send(data);
+        var workoutsData = [];
+        data.forEach(item => {
+            var workout = item.dataValues.ejercicio.dataValues;
+            workout.Comentarios = item.dataValues.Comentarios;
+
+            workoutsData.push(workout);
+        });
+        res.send(workoutsData);
+        
     })
     .catch(err => {
         res.status(500).send({

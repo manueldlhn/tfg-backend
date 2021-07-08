@@ -1,6 +1,8 @@
+const { Rol } = require("../../authentication/config/Rol");
 const {db} = require("../database");
 
 const Usuario_has_Rutina = db.usuario_has_rutina;
+const Rutina = db.rutina;
 
 
 exports.create = (req, res) => {
@@ -31,14 +33,25 @@ exports.create = (req, res) => {
 
 
 exports.findAllRoutines = (req, res) => {
-    
+    const user = req.user;
+
     Usuario_has_Rutina.findAll({
+        include: user.Rol == Rol.Usuario && {
+            model: Rutina,
+            as: 'rutina',
+        },
         where: {
             usuario_email: req.params.usuario_email
         }
     })
     .then(data => {
-        res.send(data);
+        var routinesData = [];
+        data.forEach(item => {
+            var routine = item.dataValues.rutina.dataValues;
+            routine.Comentarios = item.dataValues.Comentarios;
+            routinesData.push(routine);
+        });
+        res.send(routinesData);
     })
     .catch(err => {
         res.status(500).send({
