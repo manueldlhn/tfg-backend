@@ -44,14 +44,19 @@ exports.findAllWorkouts = (req, res) => {
         },
     })
     .then(data => {
-        var workoutsData = [];
-        data.forEach(item => {
-            var workout = item.dataValues.ejercicio.dataValues;
-            workout.Comentarios = item.dataValues.Comentarios;
-
-            workoutsData.push(workout);
-        });
-        res.send(workoutsData);
+        console.log(data);
+        if(user.Rol == Rol.Usuario){
+            var workoutsData = [];
+            data.forEach(item => {
+                var workout = item.dataValues.ejercicio.dataValues;
+                workout.Comentarios = item.dataValues.Comentarios;
+                workoutsData.push(workout);
+            });
+            res.send(workoutsData);
+        }else{
+            res.send(data);
+        }
+            
         
     })
     .catch(err => {

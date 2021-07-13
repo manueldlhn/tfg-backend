@@ -45,13 +45,17 @@ exports.findAllRoutines = (req, res) => {
         }
     })
     .then(data => {
-        var routinesData = [];
-        data.forEach(item => {
-            var routine = item.dataValues.rutina.dataValues;
-            routine.Comentarios = item.dataValues.Comentarios;
-            routinesData.push(routine);
-        });
-        res.send(routinesData);
+        if(user.Rol == Rol.Usuario){
+            var routinesData = [];
+            data.forEach(item => {
+                var routine = item.dataValues.rutina.dataValues;
+                routine.Comentarios = item.dataValues.Comentarios;
+                routinesData.push(routine);
+            });
+            res.send(routinesData);
+        }else{
+            res.send(data);
+        }
     })
     .catch(err => {
         res.status(500).send({
