@@ -15,6 +15,7 @@ exports.create = (req, res) => {
     const user_workout = {
         usuario_email: req.body.usuario_email,
         ejercicio_id: req.body.ejercicio_id,
+        especialista_email: req.body.especialista_email,
         Comentarios: req.body.Comentarios        
     }
 
@@ -32,6 +33,7 @@ exports.create = (req, res) => {
 
 
 exports.findAllWorkouts = (req, res) => {
+    const offset = req.query.offset;
     const user = req.user;
 
     Usuario_has_Ejercicio.findAll({
@@ -42,14 +44,16 @@ exports.findAllWorkouts = (req, res) => {
         where: {
             usuario_email: req.params.usuario_email
         },
+        offset: offset ? parseInt(offset) : 0,
+        limit: offset ? 10 : 100, // Temporal, hay que jugar con el offset también
     })
     .then(data => {
-        console.log(data);
         if(user.Rol == Rol.Usuario){
             var workoutsData = [];
             data.forEach(item => {
                 var workout = item.dataValues.ejercicio.dataValues;
                 workout.Comentarios = item.dataValues.Comentarios;
+                workout.especialista_email = item.dataValues.especialista_email;
                 workoutsData.push(workout);
             });
             res.send(workoutsData);

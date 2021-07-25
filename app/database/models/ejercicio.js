@@ -23,17 +23,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(10),
       allowNull: false
     },
-    Pub_priv: {
+    Ubicacion: {
       type: DataTypes.TINYINT,
       allowNull: false
     },
-    Ubicacion : {
-      type: DataTypes.TINYINT,
-      allowNull: false,
-    },
     Podometro: {
       type: DataTypes.TINYINT,
-      allowNull: false,
+      allowNull: false
     },
     RUTINA_USUARIOS_Email: {
       type: DataTypes.STRING(45),

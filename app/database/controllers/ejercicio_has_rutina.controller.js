@@ -1,3 +1,4 @@
+const { Rol } = require("../../authentication/config/Rol");
 const {db} = require("../database");
 
 const Ejercicio_has_Rutina = db.ejercicio_has_rutina;
@@ -71,6 +72,8 @@ exports.findAllRoutines = (req, res) => {
 
 exports.findAllWorkouts = (req, res) => {
     const offset = req.query.offset;
+    const user = req.user;
+
     Ejercicio_has_Rutina.findAll({
         include: {
             model: Ejercicio,
@@ -83,7 +86,13 @@ exports.findAllWorkouts = (req, res) => {
         limit: 10,
     })
     .then(data => {
-        res.send(data);
+        var workoutsData = [];
+        data.forEach(item => {
+            var workout = item.dataValues.EJERCICIO_ej.dataValues;
+            workout.Comentarios = item.dataValues.Comentarios;
+            workoutsData.push(workout);
+        });
+        res.send(workoutsData);  
     })
     .catch(err => {
         res.status(500).send({

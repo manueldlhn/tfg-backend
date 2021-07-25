@@ -17,12 +17,16 @@ module.exports = function(sequelize, DataTypes) {
       references: {
         model: 'ejercicio',
         key: 'ej_id'
-      },
+      }
+    },
+    especialista_email: {
+      type: DataTypes.STRING(100),
+      allowNull: false
     },
     Comentarios: {
       type: DataTypes.STRING(100),
       allowNull: true
-    },
+    }
   }, {
     sequelize,
     tableName: 'usuario_has_ejercicio',

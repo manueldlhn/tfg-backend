@@ -17,9 +17,9 @@ exports.create = (req, res) => {
         Subtitulo: req.body.Subtitulo,
         Descripcion: req.body.Descripcion,
         Estado_forma: req.body.Estado_forma,
-        Pub_priv: req.body.Pub_priv,
-        RUTINA_USUARIOS_Email: req.body.RUTINA_USUARIOS_Email
-        
+        Ubicacion: req.body.Ubicacion,
+        Podometro: req.body.Podometro,
+        RUTINA_USUARIOS_Email: req.body.RUTINA_USUARIOS_Email  
     }
 
     Ejercicio.create(ejercicio)

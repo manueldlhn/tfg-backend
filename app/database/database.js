@@ -20,6 +20,6 @@ module.exports =  { sequelize, db };
 
 /*
  COMANDO PARA SEQUELIZE AUTO
- node node_modules\sequelize-auto\bin\sequelize-auto -o "./models" -d rutina_app -h localhost -u springuser -p 3306 -x 1234 -e mysql
+ node node_modules\sequelize-auto\bin\sequelize-auto -o "./app/database/models" -d rutina_app -h localhost -u springuser -p 3306 -x 1234 -e mysql
 
 */

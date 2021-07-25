@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS `ejercicio` (
   `Subtitulo` varchar(200) NOT NULL,
   `Descripcion` varchar(1000) NOT NULL,
   `Estado_forma` varchar(10) NOT NULL,
-  `Pub_priv` tinyint(1) NOT NULL,
   `Ubicacion` tinyint(1) NOT NULL,
   `Podometro` tinyint(1) NOT NULL,
   `RUTINA_USUARIOS_Email` varchar(45) NOT NULL
@@ -24,11 +23,11 @@ CREATE TABLE IF NOT EXISTS `ejercicio` (
 -- Volcado de datos para la tabla `ejercicio`
 --
 
-INSERT INTO `ejercicio` (`ej_id`, `Nombre`, `Subtitulo`, `Descripcion`, `Estado_forma`, `Pub_priv`, `Ubicacion`, `Podometro`, `RUTINA_USUARIOS_Email`) VALUES
-(11, 'VOLTERETAS', 'GEMA', 'Partiendo de la posición inicial de cuclillas, con los brazos extendidos al frente impulsarse hacia delante mediante la extensión de las piernas; apoyar las manos sobre la colchoneta llevando la barbilla al pecho y las caderas en alto, apoyar la espalda , rodar sobre ella mediante una posición encorvada, al tiempo que se llevan las rodillas extendidas, seguidamente se flexionan las rodillas, continuando el impulso con el tronco hasta llegar a la posición inicial.', 'Bajo', 1, 0, 0, 'gema@gmail.com'),
-(12, 'BICEPS', 'PAUL', 'hhhh', 'Medio', 1, 0, 0, 'paul@gmail.com'),
-(13, 'LEVANTAMIENTO DE PESO', 'GEMA', 'Con una posición de pie, mirando al frente y con las rodillas levemente flexionadas, se procederá a acercar la mancuerna a los hombros doblando los codos desde un ángulo de 90 grados. Cuando la mancuerna llegue a la altura de los hombros se volverá a la posición inicial con cuidado. Es recomendable hacer 3 series de 15 repeticiones.', 'Medio', 1, 0, 0, 'gema@gmail.com'),
-(14, 'CARRERA AL AIRE LIBRE', 'Manuel Especialista', 'Correr al aire libre, durante el tiempo indicado, con pausas de hidratación.', 'Medio', 1, 1, 1, 'manuel@especialista.es');
+INSERT INTO `ejercicio` (`ej_id`, `Nombre`, `Subtitulo`, `Descripcion`, `Estado_forma`, `Ubicacion`, `Podometro`, `RUTINA_USUARIOS_Email`) VALUES
+(11, 'VOLTERETAS', 'GEMA', 'Partiendo de la posición inicial de cuclillas, con los brazos extendidos al frente impulsarse hacia delante mediante la extensión de las piernas; apoyar las manos sobre la colchoneta llevando la barbilla al pecho y las caderas en alto, apoyar la espalda , rodar sobre ella mediante una posición encorvada, al tiempo que se llevan las rodillas extendidas, seguidamente se flexionan las rodillas, continuando el impulso con el tronco hasta llegar a la posición inicial.', 'Bajo', 0, 0, 'gema@gmail.com'),
+(12, 'BICEPS', 'PAUL', 'hhhh', 'Medio', 0, 0, 'paul@gmail.com'),
+(13, 'LEVANTAMIENTO DE PESO', 'GEMA', 'Con una posición de pie, mirando al frente y con las rodillas levemente flexionadas, se procederá a acercar la mancuerna a los hombros doblando los codos desde un ángulo de 90 grados. Cuando la mancuerna llegue a la altura de los hombros se volverá a la posición inicial con cuidado. Es recomendable hacer 3 series de 15 repeticiones.', 'Medio', 0, 0, 'gema@gmail.com'),
+(14, 'CARRERA AL AIRE LIBRE', 'Manuel Especialista', 'Correr al aire libre, durante el tiempo indicado, con pausas de hidratación.', 'Medio', 1, 1, 'manuel@especialista.es');
 
 -- --------------------------------------------------------
 
@@ -62,7 +61,6 @@ CREATE TABLE IF NOT EXISTS `rutina` (
   `Nombre` varchar(100) NOT NULL,
   `Descripcion` varchar(1000) NOT NULL,
   `Info_Rutina` varchar(500) NOT NULL,
-  `Pub_priv` tinyint(1) DEFAULT NULL,
   `USUARIOS_Email` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabla de Rutinas';
 
@@ -70,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `rutina` (
 -- Volcado de datos para la tabla `rutina`
 --
 
-INSERT INTO `rutina` (`rut_id`, `Nombre`, `Descripcion`, `Info_Rutina`, `Pub_priv`, `USUARIOS_Email`) VALUES
-(15, 'PECHO', 'Recuéstate de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando hacia tus pies.\n\nEleva las mancuernas en forma recta hacia arriba hasta que tus codos se encuentren cerca de trabarse y bájalas lentamente luego de una breve pausa.\n\nExhala al levantar las mancuernas e inhala al bajarlas.', 'GEMA', 1, 'gema@gmail.com'),
-(17, 'ESPALDA', 'Colócate de pie frente a la barra con los pies separados con el ancho de los hombros. Contrae los abdominales, saca pecho manteniendo la espalda recta y dobla las rodillas hasta que pueda llegar a la barra.\nAgarra la barra con un agarre prono (los pulgares uno frente al otro), siendo ligeramente más ancho que la anchura de los hombro – usa los anillos de la barra como punto de referencia, para asegurar que está equilibrado.\nSujeta la barra con fuerza, manteniendo los abdominales y la parte inferior de la espalda contraídos, la espalda recta y el pecho hacia adelante. Fija la mirada en un punto de enfrente, inhala y contén la respiración.', 'GEMA', 1, 'gema@gmail.com'),
-(18, 'GEMELOS', 'Movimiento simple, comenzar de pie y realizar elevaciones de talón concentrando el gemelo. Para aumentar el esfuerzo, situar la parte delantera del píe en el borde de un escalón o bordillo y cuando realicéis el movimiento descendente, bajar los talones todo lo que podáis. Aguantar un par de segundos la posición tanto en la parte más elevada como en la inferior para evitar usar el rebote.', 'PAUL', 1, 'paul@gmail.com');
+INSERT INTO `rutina` (`rut_id`, `Nombre`, `Descripcion`, `Info_Rutina`, `USUARIOS_Email`) VALUES
+(15, 'PECHO', 'Recuéstate de espalda sobre un banco y sujeta 2 mancuernas al nivel del pecho, a los lados del cuerpo, con las palmas apuntando hacia tus pies.\n\nEleva las mancuernas en forma recta hacia arriba hasta que tus codos se encuentren cerca de trabarse y bájalas lentamente luego de una breve pausa.\n\nExhala al levantar las mancuernas e inhala al bajarlas.', 'GEMA', 'gema@gmail.com'),
+(17, 'ESPALDA', 'Colócate de pie frente a la barra con los pies separados con el ancho de los hombros. Contrae los abdominales, saca pecho manteniendo la espalda recta y dobla las rodillas hasta que pueda llegar a la barra.\nAgarra la barra con un agarre prono (los pulgares uno frente al otro), siendo ligeramente más ancho que la anchura de los hombro – usa los anillos de la barra como punto de referencia, para asegurar que está equilibrado.\nSujeta la barra con fuerza, manteniendo los abdominales y la parte inferior de la espalda contraídos, la espalda recta y el pecho hacia adelante. Fija la mirada en un punto de enfrente, inhala y contén la respiración.', 'GEMA', 'gema@gmail.com'),
+(18, 'GEMELOS', 'Movimiento simple, comenzar de pie y realizar elevaciones de talón concentrando el gemelo. Para aumentar el esfuerzo, situar la parte delantera del píe en el borde de un escalón o bordillo y cuando realicéis el movimiento descendente, bajar los talones todo lo que podáis. Aguantar un par de segundos la posición tanto en la parte más elevada como en la inferior para evitar usar el rebote.', 'PAUL', 'paul@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -146,6 +144,7 @@ INSERT INTO `usuarios` (`Email`, `Password`, `Nombre`,`Fecha_Nacimiento`,`Enable
 CREATE TABLE IF NOT EXISTS `usuario_has_ejercicio` (
   `usuario_email` varchar(100) NOT NULL,
   `ejercicio_id` int(11) NOT NULL,
+  `especialista_email` varchar(100) NOT NULL,
   `Comentarios` varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -153,13 +152,13 @@ CREATE TABLE IF NOT EXISTS `usuario_has_ejercicio` (
 -- Volcado de datos para la tabla `usuario_has_ejercicio`
 --
 
-INSERT INTO `usuario_has_ejercicio` (`usuario_email`, `ejercicio_id`, `Comentarios`) VALUES
-('paco@gmail.com', 11, 'Comentarios de prueba'),
-('paco@gmail.com', 12, 'Comentarios de prueba'),
-('paco@gmail.com', 13, 'Comentarios de prueba'),
-('manuel@usuario.es', 11, 'Comentarios de prueba'),
-('manuel@usuario.es', 12, 'Comentarios de prueba'),
-('manuel@usuario.es', 14, 'Comentarios de prueba');
+INSERT INTO `usuario_has_ejercicio` (`usuario_email`, `ejercicio_id`, `especialista_email`, `Comentarios`) VALUES
+('paco@gmail.com', 11, 'manuel@especialista.es', 'Comentarios de prueba'),
+('paco@gmail.com', 12, 'manuel@especialista.es', 'Comentarios de prueba'),
+('paco@gmail.com', 13, 'manuel@especialista.es', 'Comentarios de prueba'),
+('manuel@usuario.es', 11, 'manuel@especialista.es', 'Comentarios de prueba'),
+('manuel@usuario.es', 12, 'manuel@especialista.es', 'Comentarios de prueba'),
+('manuel@usuario.es', 14, 'manuel@especialista.es', 'Comentarios de prueba');
 
 -- --------------------------------------------------------
 
@@ -170,6 +169,7 @@ INSERT INTO `usuario_has_ejercicio` (`usuario_email`, `ejercicio_id`, `Comentari
 CREATE TABLE IF NOT EXISTS `usuario_has_rutina` (
   `usuario_email` varchar(100) NOT NULL,
   `rutina_id` int(11) NOT NULL,
+  `especialista_email` varchar(100) NOT NULL,
   `Comentarios` varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -177,12 +177,12 @@ CREATE TABLE IF NOT EXISTS `usuario_has_rutina` (
 -- Volcado de datos para la tabla `usuario_has_rutina`
 --
 
-INSERT INTO `usuario_has_rutina` (`usuario_email`, `rutina_id`, `Comentarios`) VALUES
-('paco@gmail.com', 15, 'Comentarios de prueba'),
-('paco@gmail.com', 17, 'Comentarios de prueba'),
-('paco@gmail.com', 18, 'Comentarios de prueba'),
-('manuel@usuario.es', 15, 'Comentarios de prueba'),
-('manuel@usuario.es', 17, 'Comentarios de prueba');
+INSERT INTO `usuario_has_rutina` (`usuario_email`, `rutina_id`, `especialista_email`, `Comentarios`) VALUES
+('paco@gmail.com', 15, 'manuel@especialista.es', 'Comentarios de prueba'),
+('paco@gmail.com', 17, 'manuel@especialista.es', 'Comentarios de prueba'),
+('paco@gmail.com', 18, 'manuel@especialista.es', 'Comentarios de prueba'),
+('manuel@usuario.es', 15, 'manuel@especialista.es', 'Comentarios de prueba'),
+('manuel@usuario.es', 17, 'manuel@especialista.es', 'Comentarios de prueba');
 
 -- --------------------------------------------------------
 
@@ -267,7 +267,8 @@ ALTER TABLE `ejercicio`
 --
 ALTER TABLE `ejercicio_has_rutina`
   ADD CONSTRAINT `fk_EJERCICIO_has_RUTINA_EJERCICIO` FOREIGN KEY (`EJERCICIO_ej_id`) REFERENCES `ejercicio` (`ej_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_EJERCICIO_has_RUTINA_RUTINA1` FOREIGN KEY (`RUTINA_rut_id`) REFERENCES `rutina` (`rut_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_EJERCICIO_has_RUTINA_RUTINA1` FOREIGN KEY (`RUTINA_rut_id`) REFERENCES `rutina` (`rut_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_EJERCICIO_has_RUTINA_ESPECIALISTA` FOREIGN KEY (`USUARIOS_Email`) REFERENCES `usuarios` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `rutina`
@@ -281,7 +282,6 @@ ALTER TABLE `rutina`
 ALTER TABLE `usuario_has_ejercicio`
   ADD CONSTRAINT `usuario_has_ejercicio_ibfk_1` FOREIGN KEY (`ejercicio_id`) REFERENCES `ejercicio` (`ej_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario_has_ejercicio_ibfk_2` FOREIGN KEY (`usuario_email`) REFERENCES `usuarios` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 --
 -- Filtros para la tabla `usuario_has_rutina`
 --

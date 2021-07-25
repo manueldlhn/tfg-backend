@@ -30,6 +30,8 @@ function initModels(sequelize) {
   rutina.hasMany(usuario_has_rutina, { as: "usuario_has_rutinas", foreignKey: "rutina_id"});
   ejercicio.belongsTo(usuarios, { as: "RUTINA_USUARIOS_Email_usuario", foreignKey: "RUTINA_USUARIOS_Email"});
   usuarios.hasMany(ejercicio, { as: "ejercicio", foreignKey: "RUTINA_USUARIOS_Email"});
+  ejercicio_has_rutina.belongsTo(usuarios, { as: "USUARIOS_Email_usuario", foreignKey: "USUARIOS_Email"});
+  usuarios.hasMany(ejercicio_has_rutina, { as: "ejercicio_has_rutinas", foreignKey: "USUARIOS_Email"});
   rutina.belongsTo(usuarios, { as: "USUARIOS_Email_usuario", foreignKey: "USUARIOS_Email"});
   usuarios.hasMany(rutina, { as: "rutina", foreignKey: "USUARIOS_Email"});
   usuario_has_ejercicio.belongsTo(usuarios, { as: "usuario_email_usuario", foreignKey: "usuario_email"});

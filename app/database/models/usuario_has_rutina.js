@@ -19,10 +19,14 @@ module.exports = function(sequelize, DataTypes) {
         key: 'rut_id'
       }
     },
+    especialista_email: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
     Comentarios: {
       type: DataTypes.STRING(100),
       allowNull: true
-    },
+    }
   }, {
     sequelize,
     tableName: 'usuario_has_rutina',

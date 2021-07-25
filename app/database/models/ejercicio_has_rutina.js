@@ -25,7 +25,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     USUARIOS_Email: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'usuarios',
+        key: 'Email'
+      }
     }
   }, {
     sequelize,
@@ -46,6 +50,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "RUTINA_rut_id" },
+        ]
+      },
+      {
+        name: "fk_EJERCICIO_has_RUTINA_ESPECIALISTA",
+        using: "BTREE",
+        fields: [
+          { name: "USUARIOS_Email" },
         ]
       },
     ]

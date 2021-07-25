@@ -19,10 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(500),
       allowNull: false
     },
-    Pub_priv: {
-      type: DataTypes.TINYINT,
-      allowNull: true
-    },
     USUARIOS_Email: {
       type: DataTypes.STRING(45),
       allowNull: false,

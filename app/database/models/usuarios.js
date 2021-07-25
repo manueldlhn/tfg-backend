@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     Password: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(60),
       allowNull: false
     },
     Nombre: {
@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: "Telefono"
     },
     Rol: {
-      type: DataTypes.STRING(12),
+      type: DataTypes.STRING(15),
       allowNull: false
     }
   }, {

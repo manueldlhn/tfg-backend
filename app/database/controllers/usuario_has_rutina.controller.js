@@ -16,6 +16,7 @@ exports.create = (req, res) => {
     const user_routine = {
         usuario_email: req.body.usuario_email,
         rutina_id: req.body.rutina_id,
+        especialista_email: req.body.especialista_email,
         Comentarios: req.body.Comentarios,      
     }
 
@@ -50,6 +51,7 @@ exports.findAllRoutines = (req, res) => {
             data.forEach(item => {
                 var routine = item.dataValues.rutina.dataValues;
                 routine.Comentarios = item.dataValues.Comentarios;
+                routine.especialista_email = item.dataValues.especialista_email;
                 routinesData.push(routine);
             });
             res.send(routinesData);
