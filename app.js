@@ -35,6 +35,7 @@ require("./app/database/routes/ejercicio.routes")(app);
 require("./app/database/routes/ejercicio_has_rutina.routes")(app);
 require("./app/database/routes/usuario_has_ejercicio.routes")(app);
 require("./app/database/routes/usuario_has_rutina.routes")(app);
+require("./app/database/routes/historial_usuarios.routes")(app);
 
 //require("./routes/website/website.routes")(app);
 

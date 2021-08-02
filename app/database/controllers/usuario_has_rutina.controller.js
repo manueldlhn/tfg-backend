@@ -37,27 +37,26 @@ exports.findAllRoutines = (req, res) => {
     const user = req.user;
 
     Usuario_has_Rutina.findAll({
-        include: user.Rol == Rol.Usuario && {
+        include: {
             model: Rutina,
             as: 'rutina',
+            attributes: user.Rol == Rol.Especialista && ["Nombre"],
         },
         where: {
             usuario_email: req.params.usuario_email
         }
     })
     .then(data => {
-        if(user.Rol == Rol.Usuario){
-            var routinesData = [];
-            data.forEach(item => {
-                var routine = item.dataValues.rutina.dataValues;
-                routine.Comentarios = item.dataValues.Comentarios;
-                routine.especialista_email = item.dataValues.especialista_email;
-                routinesData.push(routine);
-            });
-            res.send(routinesData);
-        }else{
-            res.send(data);
-        }
+        var resData = [];
+        data.forEach(item => {
+            var routine = item.rutina.dataValues;
+            routine.rutina_id = item.rutina_id;
+            routine.Comentarios = item.Comentarios;
+            routine.especialista_email = item.especialista_email;
+            resData.push(routine);
+        });
+        console.log(resData);
+        res.send(resData);
     })
     .catch(err => {
         res.status(500).send({

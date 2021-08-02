@@ -7,7 +7,7 @@ module.exports = app => {
     router.get("/All", authenticateToken(restricted=true), WorkoutRoutine.findAll);
     router.get("/Workout/:EJERCICIO_ej_id", WorkoutRoutine.findAllRoutines); // De momento no se usa
     router.get("/Routine/:RUTINA_rut_id", authenticateToken(restricted=false), WorkoutRoutine.findAllWorkouts);
-    router.put("/:EJERCICIO_ej_id/:RUTINA_rut_id",  WorkoutRoutine.update);
+    router.put("/:EJERCICIO_ej_id/:RUTINA_rut_id", authenticateToken(restricted=true),  WorkoutRoutine.update);
     router.delete("/Workout-&-Routine/:EJERCICIO_ej_id/:RUTINA_rut_id", WorkoutRoutine.delete);
     router.delete("/Workout/:EJERCICIO_ej_id", WorkoutRoutine.deleteFromAllRoutines);
     router.delete("/Routine/:RUTINA_rut_id/", WorkoutRoutine.deleteAllWorkouts);

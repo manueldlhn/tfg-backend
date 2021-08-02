@@ -37,9 +37,10 @@ exports.findAllWorkouts = (req, res) => {
     const user = req.user;
 
     Usuario_has_Ejercicio.findAll({
-        include: user.Rol == Rol.Usuario && {
+        include:{
             model: Ejercicio,
             as: 'ejercicio',
+            attributes: user.Rol == Rol.Especialista && ["Nombre"],
         },
         where: {
             usuario_email: req.params.usuario_email
@@ -48,20 +49,16 @@ exports.findAllWorkouts = (req, res) => {
         limit: offset ? 10 : 100, // Temporal, hay que jugar con el offset también
     })
     .then(data => {
-        if(user.Rol == Rol.Usuario){
-            var workoutsData = [];
-            data.forEach(item => {
-                var workout = item.dataValues.ejercicio.dataValues;
-                workout.Comentarios = item.dataValues.Comentarios;
-                workout.especialista_email = item.dataValues.especialista_email;
-                workoutsData.push(workout);
-            });
-            res.send(workoutsData);
-        }else{
-            res.send(data);
-        }
-            
-        
+        var resData = [];
+        data.forEach(item => {
+            var workout = item.ejercicio.dataValues;
+            workout.ejercicio_id = item.ejercicio_id;
+            workout.Comentarios = item.Comentarios;
+            workout.especialista_email = item.especialista_email;
+            resData.push(workout);
+        });
+        console.log(resData);
+        res.send(resData);
     })
     .catch(err => {
         res.status(500).send({

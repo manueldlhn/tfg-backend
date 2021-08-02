@@ -3,6 +3,7 @@ const {db} = require("../database");
 
 const Ejercicio_has_Rutina = db.ejercicio_has_rutina;
 const Ejercicio = db.ejercicio;
+const Rutina = db.rutina;
 
 
 exports.create = (req, res) => {
@@ -18,7 +19,7 @@ exports.create = (req, res) => {
         RUTINA_rut_id: req.body.RUTINA_rut_id,
         Comentarios: req.body.Comentarios,
         USUARIOS_Email: req.body.USUARIOS_Email        
-    }
+    };
 
     Ejercicio_has_Rutina.create(workout_routine)
     .then(data => {
@@ -36,11 +37,32 @@ exports.create = (req, res) => {
 exports.findAll = (req,res) => {
     const offset = req.query.offset;
     Ejercicio_has_Rutina.findAll({
+        include: [{
+            model: Ejercicio,
+            as: "EJERCICIO_ej",
+            attributes: ["Nombre"],
+        },{
+            model: Rutina,
+            as: "RUTINA_rut",
+            attributes: ["Nombre"],
+        }],
         offset: parseInt(offset),
         limit: 10,
     })
     .then(data => {
-        res.send(data);
+        var resData = [];
+        data.forEach(element => {
+            var resElement = {
+                EJERCICIO_ej_id: element.EJERCICIO_ej_id,
+                EJERCICIO_Nombre: element.EJERCICIO_ej.Nombre,
+                RUTINA_rut_id: element.RUTINA_rut_id,
+                RUTINA_Nombre: element.RUTINA_rut.Nombre,
+                Comentarios: element.Comentarios,
+                USUARIOS_Email: element.USUARIOS_Email,
+            };
+            resData.push(resElement);
+        });
+        res.send(resData);
     })
     .catch(err => {
         res.status(500).send({
@@ -90,6 +112,7 @@ exports.findAllWorkouts = (req, res) => {
         data.forEach(item => {
             var workout = item.dataValues.EJERCICIO_ej.dataValues;
             workout.Comentarios = item.dataValues.Comentarios;
+            workout.USUARIOS_Email = item.dataValues.USUARIOS_Email;
             workoutsData.push(workout);
         });
         res.send(workoutsData);  
@@ -106,8 +129,6 @@ exports.findAllWorkouts = (req, res) => {
 exports.update = (req, res) => {
     const EJERCICIO_ej_id = req.params.EJERCICIO_ej_id;
     const RUTINA_rut_id = req.params.RUTINA_rut_id;
-
-    console.log("Petición lanzada");
 
     Ejercicio_has_Rutina.update(req.body,{
         where: { 

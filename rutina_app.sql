@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `usuarios_roles`;
+DROP TABLE IF EXISTS `historial_usuarios`;
 DROP TABLE IF EXISTS `ejercicio_has_rutina`;
 DROP TABLE IF EXISTS `usuario_has_ejercicio`;
 DROP TABLE IF EXISTS `usuario_has_rutina`;
@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `ejercicio_has_rutina` (
 -- Volcado de datos para la tabla `ejercicio_has_rutina`
 --
 
-INSERT INTO `ejercicio_has_rutina` (`EJERCICIO_ej_id`, `RUTINA_rut_id`, `USUARIOS_Email`) VALUES
-(12, 15, 'gema@gmail.com'),
-(13, 17, 'gema@gmail.com');
+INSERT INTO `ejercicio_has_rutina` (`EJERCICIO_ej_id`, `RUTINA_rut_id`, `USUARIOS_Email`, `Comentarios`) VALUES
+(12, 15, 'gema@gmail.com','Comentarios de prueba'),
+(13, 17, 'gema@gmail.com','Comentarios de prueba 2');
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,20 @@ INSERT INTO `usuario_has_rutina` (`usuario_email`, `rutina_id`, `especialista_em
 ('manuel@usuario.es', 17, 'manuel@especialista.es', 'Comentarios de prueba');
 
 -- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `historial_usuarios`
+--
 
+CREATE TABLE IF NOT EXISTS `historial_usuarios` (
+  `USUARIOS_Email` varchar(100) NOT NULL,
+  `EJERCICIO_ej_id` int(11) NOT NULL,
+  `RUTINA_rut_id` int(11),
+  `Fecha_Hora` varchar(100) NOT NULL,
+  `Tiempo_ejercicio` varchar (100) NOT NULL,
+  `Info_Adicional` varchar(200)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
 
@@ -235,6 +248,14 @@ ALTER TABLE `usuario_has_rutina`
   ADD KEY `usuario_has_rutina_ibfk_1` (`rutina_id`),
   ADD KEY `usuario_email` (`usuario_email`);
 
+--
+-- Indices de la tabla `historial_usuarios`
+-- 
+
+ALTER TABLE `historial_usuarios`
+  ADD PRIMARY KEY (`USUARIOS_Email`,`EJERCICIO_ej_id`,`Fecha_Hora`),
+  ADD KEY `historial_usuarios_fk_email` (`USUARIOS_Email`),
+  ADD KEY `historial_usuarios_fk_ejercicio` (`EJERCICIO_ej_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -288,3 +309,11 @@ ALTER TABLE `usuario_has_ejercicio`
 ALTER TABLE `usuario_has_rutina`
   ADD CONSTRAINT `usuario_has_rutina_ibfk_1` FOREIGN KEY (`rutina_id`) REFERENCES `rutina` (`rut_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario_has_rutina_ibfk_2` FOREIGN KEY (`usuario_email`) REFERENCES `usuarios` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+--
+-- Filtros para la tabla `historial_usuarios`
+--
+ALTER TABLE `historial_usuarios`
+  ADD CONSTRAINT `historial_usuarios_ibfk_1` FOREIGN KEY (`USUARIOS_Email`) REFERENCES `usuarios` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `historial_usuarios_ibfk_2` FOREIGN KEY (`EJERCICIO_ej_id`) REFERENCES `ejercicio` (`ej_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `historial_usuarios_ibfk_3` FOREIGN KEY (`RUTINA_rut_id`) REFERENCES `rutina` (`rut_id`) ON DELETE SET NULL ON UPDATE CASCADE;
