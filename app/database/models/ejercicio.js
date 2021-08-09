@@ -31,7 +31,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TINYINT,
       allowNull: false
     },
-    RUTINA_USUARIOS_Email: {
+    Video: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    USUARIOS_Email: {
       type: DataTypes.STRING(45),
       allowNull: false,
       references: {
@@ -53,10 +57,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "fk_RUTINA_USUARIOS_Email",
+        name: "fk_USUARIOS_Email",
         using: "BTREE",
         fields: [
-          { name: "RUTINA_USUARIOS_Email" },
+          { name: "USUARIOS_Email" },
         ]
       },
     ]

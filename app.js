@@ -1,5 +1,12 @@
+/* ---------------------------
+ *    Nombre del fichero: app.js
+ *    Descripción: Fichero principal del backend       
+ *    Contenido: Incorpora todas las rutas necesarias, así como la configuración del servidor.    
+ * ---------------------------  
+ */
+
+
 const express = require('express');
-const session = require('express-session');
 const app = express();
 
 require('dotenv').config();
@@ -11,22 +18,7 @@ require('dotenv').config();
 
 const port = 3000;
 
-var path = require('path');
-var nunjucks = require('nunjucks');
-const bodyParser = require('body-parser');
-
-app.set("view engine", "html");
-nunjucks.configure(['views/'], {
-    autoescape: false,
-    express: app
-});
-
-app.use(session({secret: 'ABCDEFGHIJKLMN'}));
-app.use(express.static(__dirname+'/'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }))
-
-
+// Agregamos las rutas en las que escuchará el servidor.
 
 require("./app/database/routes/usuario.routes")(app);
 require("./app/database/routes/rutina.routes")(app);
@@ -37,10 +29,11 @@ require("./app/database/routes/usuario_has_ejercicio.routes")(app);
 require("./app/database/routes/usuario_has_rutina.routes")(app);
 require("./app/database/routes/historial_usuarios.routes")(app);
 
-//require("./routes/website/website.routes")(app);
-
 require('./app/authentication/routes/login.routes')(app);
 require('./app/authentication/routes/register.routes')(app);
+
+
+// Arrancamos el servidor en el puerto predefinido
 
 app.listen(port, () =>{
     console.log("Started on ", port);

@@ -1,3 +1,12 @@
+/* ---------------------------
+ *    Nombre del fichero: database.js
+ *    Descripción: Se crean los objetos sequelize y db para exportarlos y ser usados
+ *    Contenido: 
+ *          - sequelize: Objeto de tipo Sequelize con la conexión a la bbdd
+ *          - db: Objeto resultado de ejecutar initModels (carga los modelos de la bbdd).
+ * ---------------------------  
+ */
+
 const Sequelize = require('sequelize');
 const dbConfig = require("./config/db.config");
 const initDB = require("./models/init-models");

@@ -18,10 +18,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
-    Enabled: {
-      type: DataTypes.TINYINT,
-      allowNull: false
-    },
     Telefono: {
       type: DataTypes.STRING(9),
       allowNull: false,

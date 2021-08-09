@@ -16,18 +16,19 @@ CREATE TABLE IF NOT EXISTS `ejercicio` (
   `Estado_forma` varchar(10) NOT NULL,
   `Ubicacion` tinyint(1) NOT NULL,
   `Podometro` tinyint(1) NOT NULL,
-  `RUTINA_USUARIOS_Email` varchar(45) NOT NULL
+  `Video` varchar(100),
+  `USUARIOS_Email` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabla de Ejercicios';
 
 --
 -- Volcado de datos para la tabla `ejercicio`
 --
 
-INSERT INTO `ejercicio` (`ej_id`, `Nombre`, `Subtitulo`, `Descripcion`, `Estado_forma`, `Ubicacion`, `Podometro`, `RUTINA_USUARIOS_Email`) VALUES
-(11, 'VOLTERETAS', 'GEMA', 'Partiendo de la posición inicial de cuclillas, con los brazos extendidos al frente impulsarse hacia delante mediante la extensión de las piernas; apoyar las manos sobre la colchoneta llevando la barbilla al pecho y las caderas en alto, apoyar la espalda , rodar sobre ella mediante una posición encorvada, al tiempo que se llevan las rodillas extendidas, seguidamente se flexionan las rodillas, continuando el impulso con el tronco hasta llegar a la posición inicial.', 'Bajo', 0, 0, 'gema@gmail.com'),
-(12, 'BICEPS', 'PAUL', 'hhhh', 'Medio', 0, 0, 'paul@gmail.com'),
-(13, 'LEVANTAMIENTO DE PESO', 'GEMA', 'Con una posición de pie, mirando al frente y con las rodillas levemente flexionadas, se procederá a acercar la mancuerna a los hombros doblando los codos desde un ángulo de 90 grados. Cuando la mancuerna llegue a la altura de los hombros se volverá a la posición inicial con cuidado. Es recomendable hacer 3 series de 15 repeticiones.', 'Medio', 0, 0, 'gema@gmail.com'),
-(14, 'CARRERA AL AIRE LIBRE', 'Manuel Especialista', 'Correr al aire libre, durante el tiempo indicado, con pausas de hidratación.', 'Medio', 1, 1, 'manuel@especialista.es');
+INSERT INTO `ejercicio` (`ej_id`, `Nombre`, `Subtitulo`, `Descripcion`, `Estado_forma`, `Ubicacion`, `Podometro`, `Video`, `USUARIOS_Email`) VALUES
+(11, 'VOLTERETAS', 'GEMA', 'Partiendo de la posición inicial de cuclillas, con los brazos extendidos al frente impulsarse hacia delante mediante la extensión de las piernas; apoyar las manos sobre la colchoneta llevando la barbilla al pecho y las caderas en alto, apoyar la espalda , rodar sobre ella mediante una posición encorvada, al tiempo que se llevan las rodillas extendidas, seguidamente se flexionan las rodillas, continuando el impulso con el tronco hasta llegar a la posición inicial.', 'Bajo', 0, 0, "https://www.youtube.com/embed/dQw4w9WgXcQ", 'gema@gmail.com'),
+(12, 'BICEPS', 'PAUL', 'hhhh', 'Medio', 0, 0, "https://www.youtube.com/embed/dQw4w9WgXcQ", 'paul@gmail.com'),
+(13, 'LEVANTAMIENTO DE PESO', 'GEMA', 'Con una posición de pie, mirando al frente y con las rodillas levemente flexionadas, se procederá a acercar la mancuerna a los hombros doblando los codos desde un ángulo de 90 grados. Cuando la mancuerna llegue a la altura de los hombros se volverá a la posición inicial con cuidado. Es recomendable hacer 3 series de 15 repeticiones.', 'Medio', 0, 0, "https://www.youtube.com/embed/dQw4w9WgXcQ", 'gema@gmail.com'),
+(14, 'CARRERA AL AIRE LIBRE', 'Manuel Especialista', 'Correr al aire libre, durante el tiempo indicado, con pausas de hidratación.', 'Medio', 1, 1, null, 'manuel@especialista.es');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `Password` varchar(60) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Fecha_Nacimiento` date NOT NULL,
-  `Enabled` tinyint(4) NOT NULL,
   `Telefono` varchar(9) NOT NULL,
   `Rol` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -93,42 +93,42 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`Email`, `Password`, `Nombre`,`Fecha_Nacimiento`,`Enabled`, `Telefono`,`Rol`) VALUES
-('gema@gmail.com', '$2b$10$uveRJSG68o..1k.GN/8hZuh3mxWAtRpimIEybAhFWswmqRKLHD2vi','Gema Perez Sal','1982-01-07', 1, '666555444', 'Especialista'),
-('paco@gmail.com', '$2b$10$ADq1tozYv2wo1dMp8s1K/OMisdhovX56NUDmufnlTxk78XeTx2ApK', 'Paco Gin Ton','1980-02-28', 1, '666777888', 'Especialista'),
-('paul@gmail.com', '$2b$10$mLJlZntb5WXuCT1Bo/Amr.3jVBE1KUpt4/sS8bbpNJVsS2NKPoENi', 'Pablo Car','1993-02-03', 1, '697550247', 'Usuario'),
-('pep@us.es', '$2b$10$pbFHbb5brtysm/zT976PheSaphMo8dt7cCw.MbfvcMF4S5vk9byWe', 'PEPE','1999-12-23', 1, '654654654', 'Usuario'),
-('pop@us.es', '$2b$10$mLJlZntb5WXuCT1Bo/Amr.3jVBE1KUpt4/sS8bbpNJVsS2NKPoENi', 'pepe perez nuñez','1998-03-03', 1, '654321123', 'Usuario'),
-('manuel@usuario.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Manuel Usuario', '1995-06-26',1,'600600600','Usuario'),
-('manuel@especialista.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Manuel Especialista','1995-06-26',1,'661661661','Especialista'),
-('timetravel_0@bbs.ab', '$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe', 'John Titor', '1998-08-11', 0, '601835100', 'Usuario'),
-('usuario01@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 01','2000-01-01',1,'601601601','Usuario'),
-('usuario02@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 02','2000-01-01',1,'602602602','Usuario'),
-('usuario03@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 03','2000-01-01',1,'603603603','Usuario'),
-('usuario04@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 04','2000-01-01',1,'604604604','Usuario'),
-('usuario05@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 05','2000-01-01',1,'605605605','Usuario'),
-('usuario06@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 06','2000-01-01',1,'606606606','Usuario'),
-('usuario07@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 07','2000-01-01',1,'607607607','Usuario'),
-('usuario08@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 08','2000-01-01',1,'608608608','Usuario'),
-('usuario09@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 09','2000-01-01',1,'609609609','Usuario'),
-('usuario10@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 10','2000-01-01',1,'610610610','Usuario'),
-('usuario11@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 11','2000-01-01',1,'611611611','Usuario'),
-('usuario12@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 12','2000-01-01',1,'612612612','Usuario'),
-('usuario13@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 13','2000-01-01',1,'613613613','Usuario'),
-('usuario14@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 14','2000-01-01',1,'614614614','Usuario'),
-('usuario15@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 15','2000-01-01',1,'615615615','Usuario'),
-('usuario16@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 16','2000-01-01',1,'616616616','Usuario'),
-('usuario17@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 17','2000-01-01',1,'617617617','Usuario'),
-('usuario18@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 18','2000-01-01',1,'618618618','Usuario'),
-('usuario19@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 19','2000-01-01',1,'619619619','Usuario'),
-('usuario20@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 20','2000-01-01',1,'620620620','Usuario'),
-('usuario21@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 21','2000-01-01',1,'621621621','Usuario'),
-('usuario22@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 22','2000-01-01',1,'622622622','Usuario'),
-('usuario23@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 23','2000-01-01',1,'623623623','Usuario'),
-('usuario24@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 24','2000-01-01',1,'624624624','Usuario'),
-('usuario25@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 25','2000-01-01',1,'625625625','Usuario'),
-('usuario26@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 26','2000-01-01',1,'626626626','Usuario'),
-('usuario27@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 27','2000-01-01',1,'627627627','Usuario');
+INSERT INTO `usuarios` (`Email`, `Password`, `Nombre`,`Fecha_Nacimiento`,`Telefono`,`Rol`) VALUES
+('gema@gmail.com', '$2b$10$uveRJSG68o..1k.GN/8hZuh3mxWAtRpimIEybAhFWswmqRKLHD2vi','Gema Perez Sal','1982-01-07','666555444', 'Especialista'),
+('paco@gmail.com', '$2b$10$ADq1tozYv2wo1dMp8s1K/OMisdhovX56NUDmufnlTxk78XeTx2ApK', 'Paco Gin Ton','1980-02-28', '666777888', 'Especialista'),
+('paul@gmail.com', '$2b$10$mLJlZntb5WXuCT1Bo/Amr.3jVBE1KUpt4/sS8bbpNJVsS2NKPoENi', 'Pablo Car','1993-02-03', '697550247', 'Usuario'),
+('pep@us.es', '$2b$10$pbFHbb5brtysm/zT976PheSaphMo8dt7cCw.MbfvcMF4S5vk9byWe', 'PEPE','1999-12-23', '654654654', 'Usuario'),
+('pop@us.es', '$2b$10$mLJlZntb5WXuCT1Bo/Amr.3jVBE1KUpt4/sS8bbpNJVsS2NKPoENi', 'pepe perez nuñez','1998-03-03', '654321123', 'Usuario'),
+('manuel@usuario.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Manuel Usuario', '1995-06-26','600600600','Usuario'),
+('manuel@especialista.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Manuel Especialista','1995-06-26','661661661','Especialista'),
+('timetravel_0@bbs.ab', '$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe', 'John Titor', '1998-08-11', '601835100', 'Usuario'),
+('usuario01@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 01','2000-01-01','601601601','Usuario'),
+('usuario02@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 02','2000-01-01','602602602','Usuario'),
+('usuario03@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 03','2000-01-01','603603603','Usuario'),
+('usuario04@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 04','2000-01-01','604604604','Usuario'),
+('usuario05@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 05','2000-01-01','605605605','Usuario'),
+('usuario06@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 06','2000-01-01','606606606','Usuario'),
+('usuario07@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 07','2000-01-01','607607607','Usuario'),
+('usuario08@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 08','2000-01-01','608608608','Usuario'),
+('usuario09@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 09','2000-01-01','609609609','Usuario'),
+('usuario10@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 10','2000-01-01','610610610','Usuario'),
+('usuario11@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 11','2000-01-01','611611611','Usuario'),
+('usuario12@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 12','2000-01-01','612612612','Usuario'),
+('usuario13@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 13','2000-01-01','613613613','Usuario'),
+('usuario14@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 14','2000-01-01','614614614','Usuario'),
+('usuario15@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 15','2000-01-01','615615615','Usuario'),
+('usuario16@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 16','2000-01-01','616616616','Usuario'),
+('usuario17@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 17','2000-01-01','617617617','Usuario'),
+('usuario18@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 18','2000-01-01','618618618','Usuario'),
+('usuario19@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 19','2000-01-01','619619619','Usuario'),
+('usuario20@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 20','2000-01-01','620620620','Usuario'),
+('usuario21@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 21','2000-01-01','621621621','Usuario'),
+('usuario22@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 22','2000-01-01','622622622','Usuario'),
+('usuario23@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 23','2000-01-01','623623623','Usuario'),
+('usuario24@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 24','2000-01-01','624624624','Usuario'),
+('usuario25@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 25','2000-01-01','625625625','Usuario'),
+('usuario26@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 26','2000-01-01','626626626','Usuario'),
+('usuario27@prueba.es','$2b$10$4oe0S0xKqmUUNXfuB3o27OOpUNJ89qL0vQhMOO8Bhub7Zd4y3/Khe','Usuario de Prueba 27','2000-01-01','627627627','Usuario');
 
 
 
@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `historial_usuarios` (
 --
 ALTER TABLE `ejercicio`
   ADD PRIMARY KEY (`ej_id`),
-  ADD KEY `fk_RUTINA_USUARIOS_Email` (`RUTINA_USUARIOS_Email`);
+  ADD KEY `fk_USUARIOS_Email` (`USUARIOS_Email`);
 
 --
 -- Indices de la tabla `ejercicio_has_rutina`
@@ -281,7 +281,7 @@ ALTER TABLE `rutina`
 -- Filtros para la tabla `ejercicio`
 --
 ALTER TABLE `ejercicio`
-  ADD CONSTRAINT `fk_RUTINA_USUARIOS_Email` FOREIGN KEY (`RUTINA_USUARIOS_Email`) REFERENCES `usuarios` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_USUARIOS_Email` FOREIGN KEY (`USUARIOS_Email`) REFERENCES `usuarios` (`Email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ejercicio_has_rutina`
