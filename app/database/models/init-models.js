@@ -1,3 +1,10 @@
+/* ---------------------------
+ *    Nombre del fichero: init-models.js
+ *    Descripción: Fichero que contiene el código para inicializar los modelos para ser utilizados por el servidor en el uso de la API.
+ *    Contenido: Función initModels.        
+ * ---------------------------  
+ */
+
 var DataTypes = require("sequelize").DataTypes;
 var _ejercicio = require("./ejercicio");
 var _ejercicio_has_rutina = require("./ejercicio_has_rutina");
@@ -6,6 +13,24 @@ var _rutina = require("./rutina");
 var _usuario_has_ejercicio = require("./usuario_has_ejercicio");
 var _usuario_has_rutina = require("./usuario_has_rutina");
 var _usuarios = require("./usuarios");
+
+
+/* --------------------------
+ *    Nombre de la Función: initModels
+ *    Funcionamiento: Inicializa los modelos y define las relaciones entre estos.
+ *    Argumentos que recibe: 
+ *          - sequelize: Objeto de tipo Sequelize.
+ *    Devuelve:
+ *          - ejercicio
+ *          - ejercicio_has_rutina
+ *          - historial_usuarios
+ *          - rutina
+ *          - usuario_has_ejercicio
+ *          - usuario_has_rutina
+ *          - usuarios
+ *    Todos ellos modelos, ya inicializados y con sus relaciones definidas.
+ * --------------------------
+ */
 
 function initModels(sequelize) {
   var ejercicio = _ejercicio(sequelize, DataTypes);

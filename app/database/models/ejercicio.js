@@ -1,3 +1,10 @@
+/* ---------------------------
+ *    Nombre del fichero: ejercicio.js
+ *    Descripción: Fichero del modelo de la tabla ejercicio
+ *    Contenido: Función que define el modelo de la tabla, tal y como se define en la bbdd.        
+ * ---------------------------  
+ */
+
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('ejercicio', {

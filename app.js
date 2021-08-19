@@ -18,6 +18,11 @@ require('dotenv').config();
 
 const port = 3000;
 
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 // Agregamos las rutas en las que escuchará el servidor.
 
 require("./app/database/routes/usuario.routes")(app);
