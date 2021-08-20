@@ -14,7 +14,7 @@
 
 module.exports = {
     HOST: "localhost",
-    USER: "springuser",
+    USER: "gymAPIuser",
     PASSWORD: "1234",
     DB: "rutina_app",
     dialect: "mysql",
