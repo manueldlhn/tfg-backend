@@ -42,23 +42,31 @@ module.exports = (req,res) => {
     // Petición a la API para obtener el usuario de la bbdd
     request.get('http://localhost:3000/User/'+userGiven.Email, (error,response,body) => {
         if(!error && body != ''){
-            const userDB = JSON.parse(body);
-            
-            // Comparar la contraseña cifrada
-            if(bcrypt.compareSync(userGiven.Password, userDB.Password)){
-                // Ciframos el usuario para devolverlo como JSONWebToken
-                userDB.Password = userGiven.Password;
-                const accessToken = jwt.sign(userDB, process.env.ACCESS_TOKEN_SECRET);
-                resData.accessToken = accessToken;
-            } else {
-                resData.message = 'Contraseña incorrecta';
+            if("message" in JSON.parse(body)){ 
+                resData.message = JSON.parse(body).message;
                 resData.ok = false;
+            } else {
+                const userDB = JSON.parse(body);
+                
+                // Comparar la contraseña cifrada
+                if(bcrypt.compareSync(userGiven.Password, userDB.Password)){
+                    // Ciframos el usuario para devolverlo como JSONWebToken
+                    userDB.Password = userGiven.Password;
+                    const accessToken = jwt.sign(userDB, process.env.ACCESS_TOKEN_SECRET);
+                    resData.accessToken = accessToken;
+                } else {
+                    resData.message = 'Contraseña incorrecta';
+                    resData.ok = false;
+                }
             }
+                
         } else {
             // No se ha obtenido el usuario.
             error ? resData.message = error : resData.message = "No se ha encontrado un usuario con el Email: "+userGiven.Email;
             resData.ok = false;
         }
+        console.log(resData);
+
         res.send(resData);
     });
 }
