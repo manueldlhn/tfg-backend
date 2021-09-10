@@ -27,7 +27,7 @@ module.exports = app => {
 
     router.post("/", authenticateToken(restricted=true), Routine.create);
     router.get("/", authenticateToken(restricted=false), Routine.findAll);
-    router.get("/:rut_id", Routine.findOne);
+    // router.get("/:rut_id", Routine.findOne); // En desuso
     router.put("/:rut_id", authenticateToken(restricted=true), Routine.update);
     router.delete("/:rut_id", authenticateToken(restricted=true), Routine.delete);
     

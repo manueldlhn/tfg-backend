@@ -39,7 +39,7 @@ module.exports = (req,res) => {
             error ? resData.message = error : resData.message = "Ha habido un error al procesar el registro.";
         } else {
             resData.ok = true;
-            resData.message = "Registro realizado con éxito.";
+            resData.message = "Modificación realizada con éxito.";
         }
         res.send(resData);
     });

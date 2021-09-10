@@ -26,9 +26,9 @@ module.exports = app => {
     // Formato: router.<metodo_http>('/ruta/escuchada', [middleware opcional], controlador)
 
     router.post("/", authenticateToken(restricted=false), Records.create);
-    //router.get("/All", authenticateToken(restricted=true), Records.findAll);
+    //router.get("/All", authenticateToken(restricted=true), Records.findAll); // En desuso
     router.get("/User/:USUARIOS_Email", authenticateToken(restricted=false), Records.findAllFromUser);
-    //router.delete("/", Records.deleteAll);
+    //router.delete("/", Records.deleteAll); // En desuso
 
     app.use("/Records",router);
 };

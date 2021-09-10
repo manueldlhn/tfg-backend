@@ -27,7 +27,7 @@ module.exports = app => {
 
     router.post("/", authenticateToken(restricted=true), Workout.create);
     router.get("/", authenticateToken(restricted=false), Workout.findAll);
-    router.get("/:ej_id", Workout.findOne);
+    // router.get("/:ej_id", Workout.findOne); // En desuso
     router.put("/:ej_id", authenticateToken(restricted=true), Workout.update);
     router.delete("/:ej_id", authenticateToken(restricted=true), Workout.delete);
 

@@ -26,13 +26,13 @@ module.exports = app => {
     // Formato: router.<metodo_http>('/ruta/escuchada', [middleware opcional], controlador)
     
     router.post("/", authenticateToken(restricted=true), WorkoutRoutine.create);
-    router.get("/All", authenticateToken(restricted=true), WorkoutRoutine.findAll);
+    //router.get("/All", authenticateToken(restricted=true), WorkoutRoutine.findAll); // En desuso
     //router.get("/Workout/:EJERCICIO_ej_id", WorkoutRoutine.findAllRoutines); // En desuso
     router.get("/Routine/:RUTINA_rut_id", authenticateToken(restricted=false), WorkoutRoutine.findAllWorkouts);
     router.put("/:EJERCICIO_ej_id/:RUTINA_rut_id", authenticateToken(restricted=true),  WorkoutRoutine.update);
     router.delete("/Workout-&-Routine/:EJERCICIO_ej_id/:RUTINA_rut_id", WorkoutRoutine.delete);
-    router.delete("/Workout/:EJERCICIO_ej_id", WorkoutRoutine.deleteFromAllRoutines);
-    router.delete("/Routine/:RUTINA_rut_id/", WorkoutRoutine.deleteAllWorkouts);
+    //router.delete("/Workout/:EJERCICIO_ej_id", WorkoutRoutine.deleteFromAllRoutines); // En desuso
+    //router.delete("/Routine/:RUTINA_rut_id/", WorkoutRoutine.deleteAllWorkouts); // En desuso
     
     //router.delete("/", WorkoutRoutine.deleteAll);
 
