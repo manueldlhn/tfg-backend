@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `ejercicio_has_rutina` (
 --
 
 INSERT INTO `ejercicio_has_rutina` (`EJERCICIO_ej_id`, `RUTINA_rut_id`, `USUARIOS_Email`, `Comentarios`) VALUES
-(12, 15, 'gema@remgym.es','Comentarios de prueba'),
-(13, 17, 'gema@remgym.es','Comentarios de prueba 2');
+(12, 15, 'gema@remgym.es','Realizar cuatro series de 10 repeticiones.'),
+(13, 17, 'gema@remgym.es','Realizar tres series de 15 repeticiones.');
 
 -- --------------------------------------------------------
 
@@ -160,9 +160,9 @@ INSERT INTO `usuario_has_ejercicio` (`usuario_email`, `ejercicio_id`, `especiali
 ('paco@remgym.es', 11, 'manuel_esp@remgym.es', 'Comentarios de prueba'),
 ('paco@remgym.es', 12, 'manuel_esp@remgym.es', 'Comentarios de prueba'),
 ('paco@remgym.es', 13, 'manuel_esp@remgym.es', 'Comentarios de prueba'),
-('manuel_us@remgym.es', 11, 'manuel_esp@remgym.es', 'Comentarios de prueba'),
-('manuel_us@remgym.es', 12, 'manuel_esp@remgym.es', 'Comentarios de prueba'),
-('manuel_us@remgym.es', 14, 'manuel_esp@remgym.es', 'Comentarios de prueba');
+('manuel_us@remgym.es', 11, 'manuel_esp@remgym.es', 'Practicar con cuidado dos veces por semana.'),
+('manuel_us@remgym.es', 12, 'manuel_esp@remgym.es', 'Cuatro series de 15 repeticiones.'),
+('manuel_us@remgym.es', 14, 'manuel_esp@remgym.es', '30 minutos, 3 veces por semana.');
 
 -- --------------------------------------------------------
 
